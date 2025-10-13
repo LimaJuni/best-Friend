@@ -112,7 +112,7 @@ function startMovingButton() {
         
         // Check if button should be easy to catch
         const elapsed = Date.now() - startTime;
-        const moveInterval = elapsed > 60000 ? 3000 : 800; // Slower after 60 seconds
+        const moveInterval = elapsed > 60000 ? 1500 : 300; // Much faster: 300ms instead of 800ms
         
         setTimeout(moveButton, moveInterval);
     };
