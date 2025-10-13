@@ -257,7 +257,7 @@ function createFlowersAndText() {
             transform: translate(-50%, -50%) scale(0);
             width: 250px;
             height: 250px;
-            background-image: url('image copy.png');
+            background-image: url('image copy 4.png');
             background-size: cover;
             background-position: center;
             border-radius: 20px;
