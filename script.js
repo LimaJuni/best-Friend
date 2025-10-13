@@ -245,6 +245,27 @@ function createFlowersAndText() {
             setTimeout(() => text.remove(), 3000);
         }, i * 200);
     }
+    
+    // Show image after flowers
+    setTimeout(() => {
+        const img = document.createElement('img');
+        img.src = 'image.png';
+        img.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 20px;
+            z-index: 9999;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: imageAppear 2s ease forwards;
+        `;
+        document.body.appendChild(img);
+        
+        setTimeout(() => img.remove(), 5000);
+    }, 3500);
 }
 
 function createConfetti() {
