@@ -5,7 +5,7 @@ const errorMsg = document.getElementById('error-msg');
 const passwordPage = document.getElementById('password-page');
 const mainPage = document.getElementById('main-page');
 
-const correctPassword = 'bestie4ever';
+const correctPassword = 'bestie';
 let jumpCount = 0;
 let isJumping = false
 let startTime = 0;
@@ -329,7 +329,7 @@ function createFlowersAndText() {
     }, 14000);
 }
 
-}
+
 
 function startFalloutDestruction() {
     // Make all elements fall apart
