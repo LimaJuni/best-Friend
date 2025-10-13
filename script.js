@@ -248,16 +248,33 @@ function createFlowersAndText() {
     
     // Make images fall after flowers
     setTimeout(() => {
-        for (let i = 0; i < 15; i++) {
+        const images = [
+            'image.png',
+            'image copy.png',
+            'image copy 2.png',
+            'image copy 3.png',
+            'image copy 4.png',
+            'image copy 5.png',
+            'image copy 6.png',
+            'image copy 7.png',
+            'image copy 8.png',
+            'image copy 9.png',
+            'image copy 10.png',
+            'image copy 11.png',
+            'image copy 12.png'
+        ];
+        
+        for (let i = 0; i < 20; i++) {
             setTimeout(() => {
                 const img = document.createElement('div');
+                const randomImage = images[Math.floor(Math.random() * images.length)];
                 img.style.cssText = `
                     position: fixed;
                     top: -100px;
                     left: ${Math.random() * window.innerWidth}px;
                     width: 60px;
                     height: 60px;
-                    background-image: url('image.png');
+                    background-image: url('${randomImage}');
                     background-size: cover;
                     background-position: center;
                     border-radius: 10px;
@@ -268,7 +285,7 @@ function createFlowersAndText() {
                 document.body.appendChild(img);
                 
                 setTimeout(() => img.remove(), 4000);
-            }, i * 200);
+            }, i * 150);
         }
     }, 3500);
     
