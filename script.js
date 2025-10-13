@@ -332,44 +332,60 @@ function createFlowersAndText() {
 
 
 function showOnePieceCharacter() {
-    // Create One Piece character
-    const character = document.createElement('div');
-    character.textContent = '🏴‍☠️';
-    character.style.cssText = `
+    // Create animated Luffy character
+    const luffy = document.createElement('div');
+    luffy.innerHTML = `
+        <div style="font-size: 3rem; animation: luffyBounce 0.5s infinite alternate;">
+            👒🤸‍♂️
+        </div>
+    `;
+    luffy.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
-        font-size: 4rem;
         z-index: 10002;
-        animation: bounceIn 1s ease forwards;
+        animation: luffyMove 2s ease-in-out infinite;
     `;
-    document.body.appendChild(character);
+    document.body.appendChild(luffy);
     
-    // Speech bubble
+    // Speech bubble with Luffy's style
     const speech = document.createElement('div');
-    speech.textContent = 'What are you still doing here? Go back to chat and rate it! 🏴‍☠️';
+    speech.textContent = 'Oi! What are you still doing here?! Go back to chat and rate it, dattebayo! 🍖';
     speech.style.cssText = `
         position: fixed;
-        bottom: 120px;
+        bottom: 140px;
         right: 20px;
-        background: white;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        color: white;
         padding: 15px;
         border-radius: 20px;
-        border: 3px solid #333;
+        border: 3px solid #ff4757;
         font-weight: bold;
-        max-width: 250px;
+        max-width: 280px;
         z-index: 10002;
-        animation: speechAppear 1s ease forwards 0.5s;
+        animation: speechBubble 1s ease forwards 0.5s;
         opacity: 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     `;
     document.body.appendChild(speech);
+    
+    // Add voice effect (text-to-speech)
+    setTimeout(() => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance('Oi! What are you still doing here? Go back to chat and rate it!');
+            utterance.rate = 1.2;
+            utterance.pitch = 1.3;
+            utterance.volume = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+    }, 1000);
     
     // Start wiping after speech
     setTimeout(() => {
         startWiperAnimation();
-        character.remove();
+        luffy.remove();
         speech.remove();
-    }, 4000);
+    }, 5000);
 }
 
 function startWiperAnimation() {
