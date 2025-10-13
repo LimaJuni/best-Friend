@@ -5,7 +5,7 @@ const errorMsg = document.getElementById('error-msg');
 const passwordPage = document.getElementById('password-page');
 const mainPage = document.getElementById('main-page');
 
-const correctPassword = 'bestie';
+const correctPassword = 'bestie4ever';
 let jumpCount = 0;
 let isJumping = false
 let startTime = 0;
