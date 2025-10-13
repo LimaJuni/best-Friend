@@ -334,6 +334,46 @@ body.purple-mode {
     }
 }
 
+@keyframes flyInSpin {
+    0% {
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.1) rotate(0deg);
+    }
+    50% {
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%) scale(0.3) rotate(720deg);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8) rotate(1080deg);
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+@keyframes expandToBackground {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 300px;
+        height: 300px;
+        opacity: 0.9;
+    }
+    100% {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0.3;
+    }
+}
+
 .confetti-piece {
     position: fixed;
     width: 10px;

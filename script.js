@@ -246,25 +246,32 @@ function createFlowersAndText() {
         }, i * 200);
     }
     
-    // Show image after flowers
+    // Show image after flowers - fly in then become background
     setTimeout(() => {
-        const img = document.createElement('img');
-        img.src = 'image.png';
+        const img = document.createElement('div');
         img.style.cssText = `
             position: fixed;
-            top: 50%;
+            top: -100px;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 20px;
+            transform: translateX(-50%) scale(0.1) rotate(0deg);
+            width: 50px;
+            height: 50px;
+            background-image: url('image.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
             z-index: 9999;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: imageAppear 2s ease forwards;
+            animation: flyInSpin 3s ease forwards;
         `;
         document.body.appendChild(img);
         
-        setTimeout(() => img.remove(), 5000);
+        // After flying animation, expand to full background
+        setTimeout(() => {
+            img.style.animation = 'expandToBackground 2s ease forwards';
+            img.style.borderRadius = '0';
+        }, 3000);
+        
+        setTimeout(() => img.remove(), 8000);
     }, 3500);
 }
 
