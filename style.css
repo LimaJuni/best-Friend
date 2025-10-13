@@ -149,8 +149,8 @@ main {
 
 .friendship-meter-container {
     text-align: center;
-    margin: 50px 0;
-    padding: 30px;
+    margin: 30px 0;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
 }
@@ -207,7 +207,7 @@ main {
 
 #confetti-btn {
     display: block;
-    margin: 50px auto;
+    margin: 30px auto;
     font-size: 1.2rem;
 }
 
@@ -217,8 +217,8 @@ main {
 
 .surprise-section {
     text-align: center;
-    margin: 40px 0;
-    padding: 25px;
+    margin: 20px 0;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
 }
