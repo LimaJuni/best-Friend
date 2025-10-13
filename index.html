@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Bestie! 💛</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Password Page -->
+    <div id="password-page" class="page active">
+        <div class="password-container">
+            <h1>Hey bestie 😜</h1>
+            <p>What's the magic word?</p>
+            <input type="password" id="password-input" placeholder="Enter password...">
+            <button id="submit-btn">Let's Go! ✨</button>
+            <p id="error-msg" class="error hidden">Nope 😝 Try again!</p>
+        </div>
+    </div>
+
+    <!-- Main Page -->
+    <div id="main-page" class="page">
+        <header>
+            <h1>Hey Bes! 💛</h1>
+        </header>
+        
+        <main>
+            <div class="typewriter-container">
+                <p id="typewriter" class="typewriter"></p>
+            </div>
+
+            <div class="friendship-meter-container">
+                <h3>Friendship Meter Test 💫</h3>
+                <div class="meter-wrapper">
+                    <div id="friendship-meter" class="meter">
+                        <div id="meter-fill" class="meter-fill"></div>
+                    </div>
+                    <span id="meter-text">0% Bestie Energy</span>
+                </div>
+                <button id="start-test" class="fun-btn">Start Test!</button>
+            </div>
+
+            <div class="surprise-section">
+                <h3>Want to see a surprise? 😏</h3>
+                <button id="surprise-btn" class="fun-btn pulse">Show Me! ✨</button>
+            </div>
+
+            <button id="confetti-btn" class="fun-btn pulse">Click me! 🎉</button>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
