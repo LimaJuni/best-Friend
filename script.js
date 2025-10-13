@@ -246,53 +246,77 @@ function createFlowersAndText() {
         }, i * 200);
     }
     
-    // Make images fall after flowers
+    // Classic romantic entrance with 2 images
     setTimeout(() => {
-        const images = [
-            'image.png',
-            'image copy.png',
-            'image copy 2.png',
-            'image copy 3.png',
-            'image copy 4.png',
-            'image copy 5.png',
-            'image copy 6.png',
-            'image copy 7.png',
-            'image copy 8.png',
-            'image copy 9.png',
-            'image copy 10.png',
-            'image copy 11.png',
-            'image copy 12.png'
-        ];
+        // First image - romantic entrance
+        const img1 = document.createElement('div');
+        img1.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 250px;
+            height: 250px;
+            background-image: url('image copy.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            z-index: 9999;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: romanticEntrance 3s ease forwards;
+        `;
+        document.body.appendChild(img1);
         
-        for (let i = 0; i < 20; i++) {
+        setTimeout(() => img1.remove(), 4000);
+        
+        // Original image with Bes4ever message - comes last
+        setTimeout(() => {
+            const img2 = document.createElement('div');
+            img2.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                width: 300px;
+                height: 350px;
+                background-image: url('image.png');
+                background-size: cover;
+                background-position: center;
+                border-radius: 20px;
+                z-index: 9999;
+                box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+                animation: romanticEntrance 3s ease forwards;
+            `;
+            document.body.appendChild(img2);
+            
+            // Add Bes4ever message
+            const message = document.createElement('div');
+            message.textContent = 'Bes4ever 💜';
+            message.style.cssText = `
+                position: fixed;
+                bottom: 20%;
+                left: 50%;
+                transform: translateX(-50%) scale(0);
+                font-family: 'Pacifico', cursive;
+                font-size: 2rem;
+                color: #fff;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+                z-index: 10000;
+                animation: messageAppear 2s ease forwards 1s;
+            `;
+            document.body.appendChild(message);
+            
             setTimeout(() => {
-                const img = document.createElement('div');
-                const randomImage = images[Math.floor(Math.random() * images.length)];
-                img.style.cssText = `
-                    position: fixed;
-                    top: -100px;
-                    left: ${Math.random() * window.innerWidth}px;
-                    width: 60px;
-                    height: 60px;
-                    background-image: url('${randomImage}');
-                    background-size: cover;
-                    background-position: center;
-                    border-radius: 10px;
-                    z-index: 1000;
-                    animation: fallImage 4s ease-out forwards;
-                    transform: rotate(${Math.random() * 360}deg);
-                `;
-                document.body.appendChild(img);
-                
-                setTimeout(() => img.remove(), 4000);
-            }, i * 150);
-        }
+                img2.remove();
+                message.remove();
+            }, 6000);
+        }, 4500);
     }, 3500);
     
-    // Show rating after images fall
+    // Show rating after romantic sequence
     setTimeout(() => {
         alert('Bes be Bes! 💜 How would you rate this site in our chat? 1-10? 😏');
-    }, 7000);
+    }, 14000);
 }
 
 function createConfetti() {
