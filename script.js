@@ -246,33 +246,36 @@ function createFlowersAndText() {
         }, i * 200);
     }
     
-    // Show image after flowers - fly in then become background
+    // Make images fall after flowers
     setTimeout(() => {
-        const img = document.createElement('div');
-        img.style.cssText = `
-            position: fixed;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%) scale(0.1) rotate(0deg);
-            width: 50px;
-            height: 50px;
-            background-image: url('image.png');
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            z-index: 9999;
-            animation: flyInSpin 3s ease forwards;
-        `;
-        document.body.appendChild(img);
-        
-        // After flying animation, expand to full background
-        setTimeout(() => {
-            img.style.animation = 'expandToBackground 2s ease forwards';
-            img.style.borderRadius = '0';
-        }, 3000);
-        
-        setTimeout(() => img.remove(), 8000);
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const img = document.createElement('div');
+                img.style.cssText = `
+                    position: fixed;
+                    top: -100px;
+                    left: ${Math.random() * window.innerWidth}px;
+                    width: 60px;
+                    height: 60px;
+                    background-image: url('image.png');
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                    z-index: 1000;
+                    animation: fallImage 4s ease-out forwards;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+                document.body.appendChild(img);
+                
+                setTimeout(() => img.remove(), 4000);
+            }, i * 200);
+        }
     }, 3500);
+    
+    // Show rating after images fall
+    setTimeout(() => {
+        alert('Bes be Bes! 💜 How would you rate this site in our chat? 1-10? 😏');
+    }, 7000);
 }
 
 function createConfetti() {
