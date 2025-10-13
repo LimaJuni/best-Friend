@@ -101,6 +101,9 @@ body {
     z-index: 1000;
     animation: none;
     pointer-events: all;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    min-width: 60px;
 }
 
 .error {
