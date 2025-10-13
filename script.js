@@ -193,11 +193,21 @@ const confettiBtn = document.getElementById('confetti-btn');
 const surpriseBtn = document.getElementById('surprise-btn');
 
 confettiBtn.addEventListener('click', () => {
-    createConfetti();
-    confettiBtn.textContent = 'Yay! 🎉';
+    confettiBtn.textContent = 'Self Destroy in 3...';
+    confettiBtn.disabled = true;
+    
     setTimeout(() => {
-        confettiBtn.textContent = 'Click me! 🎉';
+        confettiBtn.textContent = '2...';
+    }, 1000);
+    
+    setTimeout(() => {
+        confettiBtn.textContent = '1...';
     }, 2000);
+    
+    setTimeout(() => {
+        confettiBtn.textContent = 'BOOM! 💥';
+        startFalloutDestruction();
+    }, 3000);
 });
 
 // Purple surprise
@@ -317,6 +327,64 @@ function createFlowersAndText() {
     setTimeout(() => {
         alert('Bes be Bes! 💜 How would you rate this site in our chat? 1-10? 😏');
     }, 14000);
+}
+
+}
+
+function startFalloutDestruction() {
+    // Make all elements fall apart
+    const elements = document.querySelectorAll('h1, h3, p, .card, .fun-btn, .friendship-meter-container, .surprise-section');
+    
+    elements.forEach((el, index) => {
+        setTimeout(() => {
+            el.style.animation = 'fallout 2s ease-in forwards';
+            el.style.animationDelay = Math.random() * 1 + 's';
+        }, index * 100);
+    });
+    
+    // Fade to white
+    setTimeout(() => {
+        const whiteOverlay = document.createElement('div');
+        whiteOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            z-index: 10000;
+            opacity: 0;
+            animation: fadeToWhite 2s ease forwards;
+        `;
+        document.body.appendChild(whiteOverlay);
+        
+        // Purple gradient appears slowly
+        setTimeout(() => {
+            whiteOverlay.style.background = 'linear-gradient(135deg, #a29bfe, #6c5ce7)';
+            whiteOverlay.style.animation = 'fadeToTransparent 3s ease forwards';
+        }, 2000);
+        
+        // Show original image
+        setTimeout(() => {
+            const finalImg = document.createElement('div');
+            finalImg.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                width: 350px;
+                height: 400px;
+                background-image: url('image.png');
+                background-size: cover;
+                background-position: center;
+                border-radius: 20px;
+                z-index: 10001;
+                box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+                animation: finalEntrance 3s ease forwards;
+            `;
+            document.body.appendChild(finalImg);
+        }, 4000);
+    }, 3000);
 }
 
 function createConfetti() {
