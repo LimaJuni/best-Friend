@@ -331,174 +331,71 @@ function createFlowersAndText() {
 
 
 
-function startPirateAnimation() {
-    // Create yellowish background
-    const background = document.createElement('div');
-    background.style.cssText = `
+function playEndingVideo() {
+    // Create video element
+    const video = document.createElement('video');
+    video.src = 'video.mp4';
+    video.autoplay = true;
+    video.muted = false;
+    video.style.cssText = `
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(135deg, #fff9c4, #ffeaa7);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        max-height: 90%;
         z-index: 10010;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     `;
-    document.body.appendChild(background);
+    document.body.appendChild(video);
     
-    // Create pirate character
-    const pirate = document.createElement('div');
-    pirate.innerHTML = `
-        <div style="font-size: 4rem; animation: pirateWalk 0.5s infinite alternate;">
-            👒🏃‍♂️
-        </div>
-    `;
-    pirate.style.cssText = `
-        position: fixed;
-        bottom: 30%;
-        left: -100px;
-        z-index: 10011;
-        animation: walkAcross 4s linear forwards;
-    `;
-    document.body.appendChild(pirate);
-    
-    // Create paint trail
-    const paintTrail = document.createElement('div');
-    paintTrail.style.cssText = `
-        position: fixed;
-        bottom: 25%;
-        left: 0;
-        width: 0;
-        height: 20px;
-        background: white;
-        z-index: 10010;
-        animation: paintTrail 4s linear forwards 1s;
-        border-radius: 10px;
-    `;
-    document.body.appendChild(paintTrail);
-    
-    // Voice line
-    setTimeout(() => {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance("Let's get started, adventure awaits!");
-            utterance.rate = 1.3;
-            utterance.pitch = 1.4;
-            utterance.volume = 0.9;
-            speechSynthesis.speak(utterance);
-        }
-    }, 2000);
-    
-    // Paint splash at the end
-    setTimeout(() => {
-        createPaintSplash();
-        pirate.remove();
-    }, 5000);
-    
-    // Clean up and return to main page
-    setTimeout(() => {
-        background.remove();
-        paintTrail.remove();
-        // Reset to main page
-        document.body.style.background = 'linear-gradient(135deg, #fff9c4, #ffeaa7)';
-    }, 7000);
-}
-
-function createPaintSplash() {
-    // Create multiple paint splashes
-    for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-            const splash = document.createElement('div');
-            splash.style.cssText = `
-                position: fixed;
-                top: ${Math.random() * 100}vh;
-                left: ${Math.random() * 100}vw;
-                width: ${20 + Math.random() * 40}px;
-                height: ${20 + Math.random() * 40}px;
-                background: white;
-                border-radius: 50%;
-                z-index: 10012;
-                animation: splashEffect 2s ease-out forwards;
-            `;
-            document.body.appendChild(splash);
-            
-            setTimeout(() => splash.remove(), 2000);
-        }, i * 50);
-    }
-    
-    // Final white overlay
-    setTimeout(() => {
-        const whiteOverlay = document.createElement('div');
-        whiteOverlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: white;
-            z-index: 10013;
-            opacity: 0;
-            animation: fadeToWhite 1s ease forwards;
-        `;
-        document.body.appendChild(whiteOverlay);
-        
-        setTimeout(() => whiteOverlay.remove(), 2000);
-    }, 1000);
+    // Show One Piece character after video
+    video.addEventListener('ended', () => {
+        video.remove();
+        showOnePieceCharacter();
+    });
 }
 
 function showOnePieceCharacter() {
-    // Create animated Luffy character
-    const luffy = document.createElement('div');
-    luffy.innerHTML = `
-        <div style="font-size: 3rem; animation: luffyBounce 0.5s infinite alternate;">
-            👒🤸‍♂️
-        </div>
-    `;
-    luffy.style.cssText = `
+    // Create One Piece character
+    const character = document.createElement('div');
+    character.textContent = '🏴‍☠️';
+    character.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
+        font-size: 4rem;
         z-index: 10002;
-        animation: luffyMove 2s ease-in-out infinite;
+        animation: bounceIn 1s ease forwards;
     `;
-    document.body.appendChild(luffy);
+    document.body.appendChild(character);
     
-    // Speech bubble with Luffy's style
+    // Speech bubble
     const speech = document.createElement('div');
-    speech.textContent = 'Oi! What are you still doing here?! Go back to chat and rate it, dattebayo! 🍖';
+    speech.textContent = 'What are you still doing here? Go back to chat and rate it! 🏴‍☠️';
     speech.style.cssText = `
         position: fixed;
-        bottom: 140px;
+        bottom: 120px;
         right: 20px;
-        background: linear-gradient(45deg, #ff6b6b, #feca57);
-        color: white;
+        background: white;
         padding: 15px;
         border-radius: 20px;
-        border: 3px solid #ff4757;
+        border: 3px solid #333;
         font-weight: bold;
-        max-width: 280px;
+        max-width: 250px;
         z-index: 10002;
-        animation: speechBubble 1s ease forwards 0.5s;
+        animation: speechAppear 1s ease forwards 0.5s;
         opacity: 0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     `;
     document.body.appendChild(speech);
-    
-    // Add voice effect (text-to-speech)
-    setTimeout(() => {
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance('Oi! What are you still doing here? Go back to chat and rate it!');
-            utterance.rate = 1.2;
-            utterance.pitch = 1.3;
-            utterance.volume = 0.8;
-            speechSynthesis.speak(utterance);
-        }
-    }, 1000);
     
     // Start wiping after speech
     setTimeout(() => {
         startWiperAnimation();
-        luffy.remove();
+        character.remove();
         speech.remove();
-    }, 5000);
+    }, 4000);
 }
 
 function startWiperAnimation() {
@@ -574,9 +471,9 @@ function startFalloutDestruction() {
             `;
             document.body.appendChild(finalImg);
             
-            // Start pirate animation after image
+            // Play video after image
             setTimeout(() => {
-                startPirateAnimation();
+                playEndingVideo();
                 finalImg.remove();
             }, 4000);
         }, 4000);
