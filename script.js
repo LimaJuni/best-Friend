@@ -331,6 +331,67 @@ function createFlowersAndText() {
 
 
 
+function showOnePieceCharacter() {
+    // Create One Piece character
+    const character = document.createElement('div');
+    character.textContent = '🏴‍☠️';
+    character.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 4rem;
+        z-index: 10002;
+        animation: bounceIn 1s ease forwards;
+    `;
+    document.body.appendChild(character);
+    
+    // Speech bubble
+    const speech = document.createElement('div');
+    speech.textContent = 'What are you still doing here? Go back to chat and rate it! 🏴‍☠️';
+    speech.style.cssText = `
+        position: fixed;
+        bottom: 120px;
+        right: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 20px;
+        border: 3px solid #333;
+        font-weight: bold;
+        max-width: 250px;
+        z-index: 10002;
+        animation: speechAppear 1s ease forwards 0.5s;
+        opacity: 0;
+    `;
+    document.body.appendChild(speech);
+    
+    // Start wiping after speech
+    setTimeout(() => {
+        startWiperAnimation();
+        character.remove();
+        speech.remove();
+    }, 4000);
+}
+
+function startWiperAnimation() {
+    const wiper = document.createElement('div');
+    wiper.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 0;
+        background: white;
+        z-index: 10003;
+        animation: wipeDown 3s ease forwards;
+    `;
+    document.body.appendChild(wiper);
+    
+    // Character disappears after wiping
+    setTimeout(() => {
+        wiper.remove();
+    }, 4000);
+}
+
 function startFalloutDestruction() {
     // Make all elements fall apart
     const elements = document.querySelectorAll('h1, h3, p, .card, .fun-btn, .friendship-meter-container, .surprise-section');
@@ -383,6 +444,11 @@ function startFalloutDestruction() {
                 animation: finalEntrance 3s ease forwards;
             `;
             document.body.appendChild(finalImg);
+            
+            // One Piece character appears after image
+            setTimeout(() => {
+                showOnePieceCharacter();
+            }, 4000);
         }, 4000);
     }, 3000);
 }
